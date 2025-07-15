@@ -10,6 +10,7 @@ import uz.cbssolutions.commons.loan.obtain.error.ContactSaveResultEmptyException
 import uz.cbssolutions.commons.loan.obtain.models.scoring.ContactModel;
 import uz.cbssolutions.loan.enities.loan.Contact;
 import uz.cbssolutions.loan.repository.ContactRepository;
+import uz.hayotbank.loanscoring.config.Constants;
 import uz.hayotbank.loanscoring.mapper.ContactModelMapper;
 
 import java.util.List;
@@ -43,8 +44,8 @@ public class ContactService {
                 .map(contactMapper::toEntity)
                 .flatMap(contactRepository::save)
                 .switchIfEmpty(
-                        Mono.error(new ContactSaveResultEmptyException(applicationId, contacts)))
+                        Mono.error(new ContactSaveResultEmptyException(applicationId, contacts, Constants.ACTOR)))
                 .onErrorMap(Throwable.class,
-                        e -> new ContactSaveException(e, applicationId, contacts));
+                        e -> new ContactSaveException(e, applicationId, contacts, Constants.ACTOR));
     }
 }
