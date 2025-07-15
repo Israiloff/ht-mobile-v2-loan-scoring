@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
+import uz.cbssolutions.commons.loan.obtain.models.scoring.ScoringRequest;
 import uz.hayotbank.camundarest.scoring.CLoanScoringResponse;
 import uz.hayotbank.commons.error.handlers.config.Constants;
 import uz.hayotbank.commons.security.core.model.UserDetails;
-import uz.hayotbank.loanscoring.model.ScoringRequest;
 import uz.hayotbank.loanscoring.service.ScoringService;
 
 import java.util.Locale;
@@ -44,7 +44,7 @@ public class ScoringController {
      * @param userDetails    the user details object containing information about the user
      *                       performing the scoring action, including their unique identifier.
      * @return a {@link Mono} of {@link CLoanScoringResponse} containing the scoring result
-     *         which includes the response code and success status.
+     * which includes the response code and success status.
      */
     @PostMapping
     public Mono<CLoanScoringResponse> scoring(
@@ -54,7 +54,7 @@ public class ScoringController {
     ) {
         log.debug("scoring started for request: {}", scoringRequest);
         log.debug("user details: {}", userDetails);
-        return scoringService.score(scoringRequest, userDetails.getId(), locale)
+        return scoringService.score(scoringRequest, locale)
                 .doOnNext(response -> log.debug("scoring response: {}", response));
     }
 }

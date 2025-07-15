@@ -7,7 +7,6 @@ import java.util.UUID;
  * Camunda scoring request model.
  *
  * @param applicationId Loan application ID.
- * @param userId        user ID.
  */
-public record CLoanScoringRequest(UUID applicationId, UUID userId) implements Serializable {
+public record CLoanScoringRequest(UUID applicationId) implements Serializable {
 }

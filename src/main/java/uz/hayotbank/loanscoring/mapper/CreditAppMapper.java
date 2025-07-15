@@ -2,8 +2,8 @@ package uz.hayotbank.loanscoring.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import uz.cbssolutions.commons.loan.obtain.models.scoring.ScoringRequest;
 import uz.cbssolutions.loan.enities.loan.CreditApplication;
-import uz.hayotbank.loanscoring.model.ScoringRequest;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,15 +15,12 @@ import java.util.UUID;
 public interface CreditAppMapper {
 
     /**
-     * Maps a {@link CreditApplication} entity and a {@link ScoringRequest} model to a new {@link CreditApplication}
-     * entity,
-     * applying field mappings between the source objects and the target entity.
+     * Maps a credit application and scoring request to a new credit application entity.
      *
-     * @param app     the {@link CreditApplication} entity containing existing application data to be mapped
-     * @param request the {@link ScoringRequest} model supplying additional request-specific data
-     * @param cardIds a list of {@link UUID} values representing the IDs of cards associated with the application
-     * @return a new {@link CreditApplication} entity with fields populated from the provided application data,
-     * request data, and card IDs
+     * @param app The source credit application containing initial data.
+     * @param request The scoring request containing additional address and region information.
+     * @param contactIds A list of contact IDs associated with the credit application.
+     * @return A new credit application entity constructed from the given parameters.
      */
     @Mapping(target = "id", source = "app.id")
     @Mapping(target = "status", source = "app.status")
@@ -40,21 +37,31 @@ public interface CreditAppMapper {
     @Mapping(target = "userId", source = "app.userId")
     @Mapping(target = "income", source = "app.income")
     @Mapping(target = "createdAt", source = "app.createdAt")
-    @Mapping(target = "updatedAt", source = "app.updatedAt")
+    @Mapping(target = "updatedAt", expression = "java(java.time.LocalDateTime.now())")
     @Mapping(target = "createdBy", source = "app.createdBy")
     @Mapping(target = "updatedBy", source = "app.updatedBy")
     @Mapping(target = "version", source = "app.version")
-    @Mapping(target = "requestAmount", source = "app.amount")
+    @Mapping(target = "requestAmount", source = "app.requestAmount")
     @Mapping(target = "loanTime", source = "app.loanTime")
     @Mapping(target = "paymentDate", source = "app.paymentDate")
     @Mapping(target = "step", source = "app.step")
-    @Mapping(target = "cardIds", source = "request.cardIds")
+    @Mapping(target = "cardIds", source = "app.cardIds")
+    @Mapping(target = "loanPurpose", source = "app.loanPurpose")
     @Mapping(target = "contactIds", source = "contactIds")
     @Mapping(target = "livingRegion", source = "request.region")
     @Mapping(target = "livingDistrict", source = "request.district")
     @Mapping(target = "livingAddress", source = "request.address")
     @Mapping(target = "livingHomeNumber", source = "request.homeNumber")
-    @Mapping(target = "loanPurpose", source = "request.purpose")
-    CreditApplication toEntity(CreditApplication app, ScoringRequest request, List<UUID> cardIds);
+    CreditApplication toEntity(CreditApplication app, ScoringRequest request, List<UUID> contactIds);
 
+    /**
+     * Maps loan contacts and the old credit application to the new credit application entity.
+     *
+     * @param app Loan application entity.
+     * @param contactIds List of contact IDs.
+     * @return Credit application entity.
+     */
+    @Mapping(target = "contactIds", source = "contactIds")
+    @Mapping(target = "updatedAt", expression = "java(java.time.LocalDateTime.now())")
+    CreditApplication toEntity(CreditApplication app, List<UUID> contactIds);
 }

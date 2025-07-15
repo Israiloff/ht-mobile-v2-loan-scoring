@@ -16,4 +16,6 @@ public final class Constants {
      * with card closure processes in the application.
      */
     public static final String ACTOR = "loanScoring";
+
+    public static final String HEADER_KEY_LOCALE = "Locale";
 }

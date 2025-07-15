@@ -24,26 +24,16 @@
         <rjvalidation.version>2.0.0</rjvalidation.version>
         <loan-repository.version>0.1.7</loan-repository.version>
         <loan-entities.version>0.1.14</loan-entities.version>
+        <loan-utils.version>0.9.27</loan-utils.version>
     </properties>
 
     <dependencies>
 
         <dependency>
-            <groupId>uz.cbssolutions</groupId>
-            <artifactId>rjvalidation</artifactId>
-            <version>${rjvalidation.version}</version>
+            <groupId>uz.cbssolutions.commons.loan.obtain</groupId>
+            <artifactId>utils</artifactId>
+            <version>${loan-utils.version}</version>
         </dependency>
-        <dependency>
-            <groupId>uz.cbssolutions.loan</groupId>
-            <artifactId>repository</artifactId>
-            <version>${loan-repository.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>uz.cbssolutions.loan</groupId>
-            <artifactId>enities</artifactId>
-            <version>${loan-entities.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>uz.hayotbank.commons.error</groupId>
             <artifactId>handlers</artifactId>

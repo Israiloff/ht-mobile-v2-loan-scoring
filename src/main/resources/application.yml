@@ -27,7 +27,7 @@ server:
 services:
   camunda-rest:
     base-url: ${CAMUNDA_REST_BASE_URL:http://172.20.20.135:32123}
-    loan-scoring-endpoint: /mobile/loan-scoring
+    loan-scoring-endpoint: /mobile/microloan/scoring
     webClientProperties:
       maxConnections: 1000
       pendingAcquireMaxCount: 500
