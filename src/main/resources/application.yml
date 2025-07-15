@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: loan-scoring
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_URL:http://localhost:8090}/realms/${KEYCLOAK_REALM:Hayot}
+          principal-claim-name: preferred_username
+
+server:
+  port: 8080
+
+
+services:
+  camunda-rest:
+    base-url: ${CAMUNDA_REST_BASE_URL:http://172.20.20.135:32123}
+    loan-scoring-endpoint: /mobile/loan-scoring
+    webClientProperties:
+      maxConnections: 1000
+      pendingAcquireMaxCount: 500
+      pendingAcquireTimeout: PT10S
+      maxIdleTime: PT20S
+      maxLifeTime: PT1M
+      responseTimeout: PT30S
+
+uz:
+  hayotbank:
+    commons:
+      error:
+        decoder:
+          maxConnections: '1000'
+          responseTimeout: PT30S
+          maxLifeTime: PT1M
+          url: http://error-decoder:8080/api/decode
+          maxIdleTime: PT20S
+          pendingAcquireMaxCount: '500'
+          pendingAcquireTimeout: PT10S
+        unknown:
+          code: '-1'
+          actor: application
+
