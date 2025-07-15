@@ -21,10 +21,7 @@
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <security-core.version>0.0.4</security-core.version>
         <error.handlers.version>0.2.14</error.handlers.version>
-        <rjvalidation.version>2.0.0</rjvalidation.version>
-        <loan-repository.version>0.1.7</loan-repository.version>
-        <loan-entities.version>0.1.14</loan-entities.version>
-        <loan-utils.version>0.9.27</loan-utils.version>
+        <loan-utils.version>0.9.29</loan-utils.version>
     </properties>
 
     <dependencies>
