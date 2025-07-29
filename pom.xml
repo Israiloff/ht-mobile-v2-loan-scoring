@@ -10,7 +10,7 @@
     </parent>
     <groupId>uz.hayotbank</groupId>
     <artifactId>loan-scoring</artifactId>
-    <version>0.0.1</version>
+    <version>0.1.1</version>
     <name>loan-scoring</name>
     <description>loan-scoring</description>
     <properties>
@@ -22,6 +22,7 @@
         <security-core.version>0.0.4</security-core.version>
         <error.handlers.version>0.2.14</error.handlers.version>
         <loan-utils.version>0.9.30</loan-utils.version>
+        <otel.version>0.6.71</otel.version>
     </properties>
 
     <dependencies>
@@ -71,6 +72,11 @@
             <groupId>uz.hayotbank.commons.security</groupId>
             <artifactId>core</artifactId>
             <version>${security-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>uz.hayotbank.commons.trace</groupId>
+            <artifactId>otel</artifactId>
+            <version>${otel.version}</version>
         </dependency>
     </dependencies>
 
