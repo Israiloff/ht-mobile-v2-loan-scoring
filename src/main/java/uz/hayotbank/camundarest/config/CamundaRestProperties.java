@@ -1,4 +1,4 @@
-package uz.hayotbank.camundarest;
+package uz.hayotbank.camundarest.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

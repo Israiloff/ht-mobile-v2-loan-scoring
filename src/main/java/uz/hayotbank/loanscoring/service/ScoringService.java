@@ -1,26 +1,16 @@
 package uz.hayotbank.loanscoring.service;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import uz.cbssolutions.commons.loan.obtain.models.scoring.ScoringRequest;
-import uz.hayotbank.camundarest.CamundaRestService;
-import uz.hayotbank.camundarest.scoring.CLoanScoringRequest;
-import uz.hayotbank.camundarest.scoring.CLoanScoringResponse;
+import uz.hayotbank.camundarest.model.scoring.CLoanScoringResponse;
 
 import java.util.Locale;
 
 /**
  * Scoring service implementation.
  */
-@Slf4j
-@Service
-@RequiredArgsConstructor
-public class ScoringService {
 
-    private final CreditAppAdditionalService additionalService;
-    private final CamundaRestService camundaRestService;
+public interface ScoringService {
 
     /**
      * Processes a loan scoring request by updating the credit application and
@@ -38,10 +28,6 @@ public class ScoringService {
      * @return a {@code Mono<CLoanScoringResponse>} containing the result of the loan
      * scoring operation
      */
-    public Mono<CLoanScoringResponse> score(ScoringRequest request, Locale locale) {
-        log.debug("score started for request: {}", request);
-        return additionalService.update(request)
-                .flatMap(app -> camundaRestService.scoreLoan(new CLoanScoringRequest(app.id()), locale));
-    }
+    Mono<CLoanScoringResponse> score(ScoringRequest request, Locale locale);
 
 }

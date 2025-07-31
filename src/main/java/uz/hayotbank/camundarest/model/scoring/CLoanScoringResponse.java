@@ -1,5 +1,5 @@
 
-package uz.hayotbank.camundarest.scoring;
+package uz.hayotbank.camundarest.model.scoring;
 
 import java.io.Serializable;
 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 import uz.cbssolutions.commons.loan.obtain.models.scoring.ScoringRequest;
-import uz.hayotbank.camundarest.scoring.CLoanScoringResponse;
+import uz.hayotbank.camundarest.model.scoring.CLoanScoringResponse;
 import uz.hayotbank.commons.error.handlers.config.Constants;
 import uz.hayotbank.commons.security.core.model.UserDetails;
 import uz.hayotbank.loanscoring.service.ScoringService;

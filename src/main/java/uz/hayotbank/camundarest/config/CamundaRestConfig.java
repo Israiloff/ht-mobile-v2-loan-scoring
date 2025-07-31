@@ -1,4 +1,4 @@
-package uz.hayotbank.camundarest;
+package uz.hayotbank.camundarest.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
