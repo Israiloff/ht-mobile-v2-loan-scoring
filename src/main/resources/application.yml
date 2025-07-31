@@ -52,3 +52,9 @@ uz:
           code: '-1'
           actor: application
 
+cbs:
+  minio:
+    url: ${MINIO-URL:http://localhost:9000}
+    bucket: ${MINIO-BUCKET:bucket-name}
+    access: ${MINIO-ACCESS:access-key}
+    secret: ${MINIO-SECRET:secret-key}
