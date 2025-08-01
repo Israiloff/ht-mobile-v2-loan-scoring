@@ -7,9 +7,8 @@ import java.io.Serializable;
 /**
  * Application properties.
  *
- * @param commonErrorCode   Common error code.
  * @param scoringStepNumber Scoring step number.
  */
 @ConfigurationProperties(prefix = "application")
-public record ApplicationProperties(String commonErrorCode, Integer scoringStepNumber) implements Serializable {
+public record ApplicationProperties(Integer scoringStepNumber) implements Serializable {
 }

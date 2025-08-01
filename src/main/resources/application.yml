@@ -58,3 +58,6 @@ cbs:
     bucket: ${MINIO-BUCKET:bucket-name}
     access: ${MINIO-ACCESS:access-key}
     secret: ${MINIO-SECRET:secret-key}
+
+application:
+  scoringStepNumber: 3
