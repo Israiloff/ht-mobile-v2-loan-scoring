@@ -22,6 +22,6 @@ public interface ContactModelMapper {
     @Mapping(target = "name", source = "name")
     @Mapping(target = "phone", source = "phone")
     @Mapping(target = "typeId", source = "type")
-    @Mapping(target = "createdAt", expression = "java(java.time.LocalDateTime.now())")
+    @Mapping(target = "createdOn", expression = "java(java.time.LocalDateTime.now())")
     Contact toEntity(ContactModel contact);
 }
