@@ -10,7 +10,7 @@
     </parent>
     <groupId>uz.hayotbank</groupId>
     <artifactId>loan-scoring</artifactId>
-    <version>0.2.7</version>
+    <version>0.2.8</version>
     <name>loan-scoring</name>
     <description>loan-scoring</description>
     <properties>

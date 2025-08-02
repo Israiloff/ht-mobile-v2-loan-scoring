@@ -18,7 +18,7 @@ public interface ContactModelMapper {
      * @return Contact entity.
      */
     @Mapping(target = "nearby", ignore = true)
-    @Mapping(target = "id", expression = "java(java.util.UUID.randomUUID())")
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "name", source = "name")
     @Mapping(target = "phone", source = "phone")
     @Mapping(target = "typeId", source = "type")
