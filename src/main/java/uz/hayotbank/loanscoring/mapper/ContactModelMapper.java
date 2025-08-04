@@ -17,7 +17,7 @@ public interface ContactModelMapper {
      * @param contact Contact model.
      * @return Contact entity.
      */
-    @Mapping(target = "id", expression = "java(java.util.UUID.randomUUID().toString())")
+    @Mapping(target = "id", expression = "java(java.util.UUID.randomUUID())")
     @Mapping(target = "name", source = "name")
     @Mapping(target = "phone", source = "phone")
     @Mapping(target = "typeId", source = "type")
