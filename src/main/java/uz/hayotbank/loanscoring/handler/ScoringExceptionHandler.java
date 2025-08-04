@@ -43,7 +43,7 @@ public class ScoringExceptionHandler extends ResponseEntityExceptionHandler {
      */
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(DecodableException.class)
+    @ExceptionHandler(LoanException.class)
     public Mono<ErrorResult> handleDecodable(LoanException ex,
             @RequestHeader(Constants.HEADER_KEY_LOCALE) Locale locale) {
         log.error("Decodable error occurred", ex);
