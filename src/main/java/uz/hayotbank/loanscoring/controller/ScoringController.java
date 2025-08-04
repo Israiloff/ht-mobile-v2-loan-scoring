@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
+import uz.cbssolutions.commons.loan.obtain.models.LoanResult;
 import uz.cbssolutions.commons.loan.obtain.models.scoring.ScoringRequest;
-import uz.hayotbank.camundarest.model.scoring.CLoanScoringResponse;
+import uz.cbssolutions.commons.loan.obtain.utils.service.CreditAppService;
+import uz.cbssolutions.commons.loan.obtain.utils.util.ResultUtil;
 import uz.hayotbank.commons.security.core.model.UserDetails;
 import uz.hayotbank.loanscoring.config.Constants;
 import uz.hayotbank.loanscoring.service.ScoringService;
@@ -31,6 +33,8 @@ import uz.hayotbank.loanscoring.service.ScoringService;
 public class ScoringController {
 
     private final ScoringService scoringService;
+    private final CreditAppService creditAppService;
+    private final ResultUtil resultUtil;
 
     /**
      * Processes a loan scoring request and returns the scoring response.
@@ -42,18 +46,18 @@ public class ScoringController {
      *                       for localization purposes in the scoring process.
      * @param userDetails    the user details object containing information about the user
      *                       performing the scoring action, including their unique identifier.
-     * @return a {@link Mono} of {@link CLoanScoringResponse} containing the scoring result
-     * which includes the response code and success status.
+     * @return a {@link Mono} containing the {@link LoanResult} object, which includes common loan information.
      */
     @PostMapping
-    public Mono<CLoanScoringResponse> scoring(
+    public Mono<LoanResult> scoring(
             @RequestBody ScoringRequest scoringRequest,
             @RequestHeader(Constants.HEADER_KEY_LOCALE) Locale locale,
-            UserDetails userDetails
-    ) {
+            UserDetails userDetails) {
         log.debug("scoring started for request: {}", scoringRequest);
         log.debug("user details: {}", userDetails);
         return scoringService.score(scoringRequest, locale)
-                .doOnNext(response -> log.debug("scoring response: {}", response));
+                .then(creditAppService.findDetailedById(scoringRequest.applicationId(),
+                        Constants.ACTOR))
+                .map(app -> resultUtil.toLoanResult(app, locale));
     }
 }

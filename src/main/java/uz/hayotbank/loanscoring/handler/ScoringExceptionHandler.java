@@ -16,7 +16,6 @@ import uz.cbssolutions.commons.loan.obtain.models.error.ErrorResult;
 import uz.cbssolutions.commons.loan.obtain.utils.mapper.ErrorRequestMapper;
 import uz.cbssolutions.commons.loan.obtain.utils.mapper.ErrorResultMapper;
 import uz.cbssolutions.commons.loan.obtain.utils.service.ErrorDecoderClient;
-import uz.hayotbank.commons.error.models.DecodableException;
 import uz.hayotbank.loanscoring.config.Constants;
 
 /**
