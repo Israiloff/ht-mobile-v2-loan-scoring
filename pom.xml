@@ -10,7 +10,7 @@
     </parent>
     <groupId>uz.hayotbank</groupId>
     <artifactId>loan-scoring</artifactId>
-    <version>0.2.8</version>
+    <version>0.2.9</version>
     <name>loan-scoring</name>
     <description>loan-scoring</description>
     <properties>
@@ -21,7 +21,7 @@
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <security-core.version>0.0.4</security-core.version>
         <error.handlers.version>0.2.14</error.handlers.version>
-        <loan-utils.version>0.10.36</loan-utils.version>
+        <loan-utils.version>0.10.37</loan-utils.version>
         <otel.version>0.6.71</otel.version>
         <minio.version>1.0.3-RC2</minio.version>
     </properties>

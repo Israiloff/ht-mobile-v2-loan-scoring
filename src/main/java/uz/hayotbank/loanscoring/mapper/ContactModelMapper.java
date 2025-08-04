@@ -17,11 +17,9 @@ public interface ContactModelMapper {
      * @param contact Contact model.
      * @return Contact entity.
      */
-    @Mapping(target = "nearby", ignore = true)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "name", source = "name")
     @Mapping(target = "phone", source = "phone")
     @Mapping(target = "typeId", source = "type")
-    @Mapping(target = "createdOn", expression = "java(java.time.LocalDateTime.now())")
     Contact toEntity(ContactModel contact);
 }
