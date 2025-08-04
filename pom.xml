@@ -10,7 +10,7 @@
     </parent>
     <groupId>uz.hayotbank</groupId>
     <artifactId>loan-scoring</artifactId>
-    <version>0.2.10</version>
+    <version>0.3.10</version>
     <name>loan-scoring</name>
     <description>loan-scoring</description>
     <properties>
@@ -20,8 +20,8 @@
         <maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <security-core.version>0.0.4</security-core.version>
-        <error.handlers.version>0.2.14</error.handlers.version>
-        <loan-utils.version>0.10.37</loan-utils.version>
+        <loan-errors.version>0.7.16</loan-errors.version>
+        <loan-utils.version>0.13.39</loan-utils.version>
         <otel.version>0.6.71</otel.version>
         <minio.version>1.0.3-RC2</minio.version>
     </properties>
@@ -31,11 +31,6 @@
             <groupId>uz.cbssolutions.commons.loan.obtain</groupId>
             <artifactId>utils</artifactId>
             <version>${loan-utils.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>uz.hayotbank.commons.error</groupId>
-            <artifactId>handlers</artifactId>
-            <version>${error.handlers.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -80,6 +75,11 @@
             <groupId>uz.cbssolutions.commons.file</groupId>
             <artifactId>minio</artifactId>
             <version>${minio.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>uz.cbssolutions.commons.loan.obtain</groupId>
+            <artifactId>errors</artifactId>
+            <version>${loan-errors.version}</version>
         </dependency>
     </dependencies>
 

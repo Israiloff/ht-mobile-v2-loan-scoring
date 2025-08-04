@@ -7,9 +7,6 @@ package uz.hayotbank.loanscoring.config;
  */
 public final class Constants {
 
-    private Constants() {
-    }
-
     /**
      * A constant representing the key or identifier for the "card-close" actor.
      * This value is used to denote actions, configurations, or events associated
@@ -18,4 +15,6 @@ public final class Constants {
     public static final String ACTOR = "loanScoring";
 
     public static final String HEADER_KEY_LOCALE = "Locale";
+
+    public static final String UNKNOWN_ERROR_CODE = "-999";
 }
