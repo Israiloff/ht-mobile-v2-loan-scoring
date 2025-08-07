@@ -11,6 +11,7 @@ import org.springframework.web.reactive.result.method.annotation.ResponseEntityE
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
+import uz.cbssolutions.commons.loan.obtain.error.CreditApplicationNotBelongToUserException;
 import uz.cbssolutions.commons.loan.obtain.error.LoanException;
 import uz.cbssolutions.commons.loan.obtain.models.error.ErrorResult;
 import uz.cbssolutions.commons.loan.obtain.utils.mapper.ErrorRequestMapper;
@@ -31,6 +32,25 @@ public class ScoringExceptionHandler extends ResponseEntityExceptionHandler {
     private final ErrorResultMapper errorResultMapper;
     private final ErrorRequestMapper errorRequestMapper;
 
+    /**
+     * Handles DecodableException by decoding the error using the ErrorDecoderClient
+     * and mapping it to a response.
+     *
+     * @param ex The DecodableException to handle.
+     * @param locale Current locale.
+     * @return A Mono containing the mapped response.
+     */
+    @ResponseBody
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(CreditApplicationNotBelongToUserException.class)
+    public Mono<ErrorResult> handleAppNotBelong(CreditApplicationNotBelongToUserException ex,
+            @RequestHeader(Constants.HEADER_KEY_LOCALE) Locale locale) {
+        log.error("Credit application does not belong to user", ex);
+        return Mono
+                .just(errorRequestMapper.map(ex.getActor(), ex.getCode(), ex.getApplicationId()))
+                .flatMap(errorReq -> errorDecoderClient.decode(errorReq, locale))
+                .map(errorResultMapper::map);
+    }
 
     /**
      * Handles DecodableException by decoding the error using the ErrorDecoderClient
